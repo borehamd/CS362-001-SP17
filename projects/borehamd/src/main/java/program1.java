@@ -10,7 +10,7 @@ public class program1 {
     private int size=0;
 
     public int push(int x){
-        if(size>MAX) return -1; /* won't reject a MAX+1th term*/
+        if(size>MAX||x<0) return -1; /* won't reject a MAX+1th term*/
         array[size]=x;
         size++;
         return 0;
@@ -24,7 +24,7 @@ public class program1 {
         return temp;
     }
     public int retSize(){
-        return size;
+        return array.length;
     }
 
     public int retval(int n){
@@ -38,9 +38,9 @@ public class program1 {
     }
     // x is the position that is moved to the front of the queue
     // mismanaged for loop (values to the right of target should not be changed)
-    public void movetofront(int x){
-        if(x<=0||x>=size) return;
-        int temp=array[x];
+    public void movetofront(int n){
+        if(n<=0||n>=size) return;
+        int temp=array[n];
         for(int i=MAX-1;i>0;i--) array[i]=array[i-1];
         array[0]=temp;
     }
