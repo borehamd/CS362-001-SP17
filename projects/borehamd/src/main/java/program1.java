@@ -15,7 +15,8 @@ public class program1 {
         size++;
         return 0;
     }
-    public int pop(){   /*corrupts entire array with last value, for loop reversed doesn't check for empty queue*/
+
+    public int pop(){   /*corrupts entire array with last value, for loop reversed*/
         if (size==0)return -1;
         int temp=array[0];
         for(int i=size-1;i>0;i--) array[i-1]=array[i];
@@ -25,14 +26,22 @@ public class program1 {
     public int retSize(){
         return size;
     }
+
     public int retval(int n){
         if (n<0||n>=size)return -1;
         return array[n];
     }
-    public boolean search(int n){
-        for(int i=0;i<size;i++) if(array[i]==n)return true;
-        return false;
+
+    public int search(int n){
+        for(int i=0;i<size;i++) if(array[i]==n)return i;
+        return -1;
     }
-
-
+    // x is the position that is moved to the front of the queue
+    // mismanaged for loop (values to the right of target should not be changed)
+    public void movetofront(int x){
+        if(x<=0||x>=size) return;
+        int temp=array[x];
+        for(int i=MAX-1;i>0;i--) array[i]=array[i-1];
+        array[0]=temp;
+    }
 }
